@@ -18,7 +18,6 @@ build/
 *.log
 instance/
 *.sqlite3
-config.py
 
 # Flask-specific
 *.db
