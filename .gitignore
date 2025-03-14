@@ -1,0 +1,44 @@
+# General
+.DS_Store
+Thumbs.db
+
+# Python (Backend)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.env
+*.venv
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+instance/
+*.sqlite3
+
+# Flask-specific
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.swp
+
+# Node.js (Frontend - React)
+node_modules/
+npm-debug.log
+yarn-error.log
+build/
+dist/
+.env
+coverage/
+
+# VSCode & IDE-specific
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Docker (if using)
+docker-compose.override.yml
