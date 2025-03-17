@@ -1,0 +1,30 @@
+.landing-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin: 20px auto;
+  width: 50%;
+}
+
+.sentiment-btn {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sentiment-btn:hover {
+  background-color: #0056b3;
+}
