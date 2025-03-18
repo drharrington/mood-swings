@@ -1,5 +1,5 @@
 import praw
-from backend.scraper.config import REDDIT_USERNAME, REDDIT_PASSWORD, CLIENT_ID, CLIENT_SECRET, USER_AGENT
+from config import REDDIT_USERNAME, REDDIT_PASSWORD, CLIENT_ID, CLIENT_SECRET, USER_AGENT
 
 # Function to fetch Reddit posts about a specific brand
 def fetch_brand_posts(brand_name):
