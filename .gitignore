@@ -35,6 +35,7 @@ build/
 *.log
 instance/
 *.sqlite3
+backend/data/*.csv
 
 # Flask-specific
 *.db
