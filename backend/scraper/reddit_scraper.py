@@ -1,8 +1,7 @@
 import praw
-import os
 import pandas as pd
 import logging
-from .scraper_utils import process_data, save_to_csv  # Use relative import
+from .scraper_utils import process_data, save_to_csv
 
 from backend.config import (
     REDDIT_USERNAME,
@@ -17,22 +16,23 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# Initialize Reddit API client
-reddit = praw.Reddit(
-    username=REDDIT_USERNAME,
-    password=REDDIT_PASSWORD,
-    client_id=CLIENT_ID,
-    client_secret=CLIENT_SECRET,
-    user_agent=USER_AGENT,
-)
 
-
-def fetch_brand_data(brand_name, limit=10):
+def fetch_brand_data(brand_name, limit=10, reddit_client=None):
     """Fetch Reddit posts about a specific brand."""
+
+    # Initialize Reddit API client
+    reddit_client = reddit_client or praw.Reddit(
+        username=REDDIT_USERNAME,
+        password=REDDIT_PASSWORD,
+        client_id=CLIENT_ID,
+        client_secret=CLIENT_SECRET,
+        user_agent=USER_AGENT,
+    )
+
     data = []
     try:
         # Search for posts mentioning the brand in the title or body
-        for submission in reddit.subreddit("all").search(
+        for submission in reddit_client.subreddit("all").search(
             brand_name, limit=limit, sort="top"
         ):
             post_data = {
@@ -64,9 +64,7 @@ if __name__ == "__main__":
         brand_name = input("Enter brand name: ").strip()
         if not brand_name:
             raise ValueError("Brand name cannot be empty.")
-        limit = int(
-            input("Enter the number of posts to fetch (default 10): ") or 10
-        )
+        limit = int(input("Enter the number of posts to fetch (default 10): ") or 10)
         logging.info(f"Fetching data for brand: {brand_name} with limit: {limit}")
         reddit_data = fetch_brand_data(brand_name, limit=limit)
         posts, comments = process_data(reddit_data, brand_name)
