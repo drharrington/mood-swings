@@ -1,6 +1,23 @@
 import os
+import re
 import pandas as pd
 import logging
+
+
+def clean_text(text):
+    """Clean text by removing URLs, special characters, punctuation, and extra spaces."""
+    # Remove URLs (including those without http/https/www)
+    text = re.sub(
+        r"\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b", "", text
+    )  # Matches domain-like patterns
+    text = re.sub(
+        r"http\S+|www\S+", "", text, flags=re.MULTILINE
+    )  # Matches http/https/www URLs
+    # Remove special characters and punctuation
+    text = re.sub(r"[^\w\s]", "", text)  # Keep only words and spaces
+    # Remove extra spaces
+    text = re.sub(r"\s+", " ", text)  # Replace multiple spaces with a single space
+    return text.strip().lower()
 
 
 def process_data(data, brand_name):
@@ -12,8 +29,8 @@ def process_data(data, brand_name):
             {
                 "brand_name": brand_name,
                 "post_id": post["id"],
-                "post_title": post["title"],
-                "post_body": post["selftext"],
+                "post_title": clean_text(post["title"]),
+                "post_body": clean_text(post["selftext"]),
                 "post_score": post["score"],
                 "post_url": post["url"],
                 "post_num_comments": post["num_comments"],
@@ -26,7 +43,7 @@ def process_data(data, brand_name):
                     "brand_name": brand_name,
                     "post_id": post["id"],
                     "comment_id": comment["id"],
-                    "comment_body": (
+                    "comment_body": clean_text(
                         comment["body"]
                         if comment["body"] not in ["[deleted]", "[removed]"]
                         else "Deleted Comment"

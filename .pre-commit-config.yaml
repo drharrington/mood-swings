@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: run-tests
         name: Run Backend Tests
-        entry: bash -c "set -x && source ./env/bin/activate && PYTHONPATH=$(pwd)/backend python3 -m unittest discover -s backend/tests -t backend -p 'test_*.py' -v"
+        entry: bash -c "set -x && source ./venv/bin/activate && PYTHONPATH=$(pwd)/backend python3 -m unittest discover -s backend/tests -t backend -p 'test_*.py' -v"
         language: system
         pass_filenames: false
         verbose: true  # Show logs
