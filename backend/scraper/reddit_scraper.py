@@ -1,7 +1,7 @@
 import praw
 import pandas as pd
 import logging
-from .scraper_utils import process_data, save_to_csv
+from backend.scraper.scraper_utils import process_data, save_to_csv
 
 from backend.config import (
     REDDIT_USERNAME,
