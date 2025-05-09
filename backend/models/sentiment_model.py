@@ -1,4 +1,5 @@
 from model_utils import preprocess_text, train_naive_bayes, save_model
+from backend.text_vectorizing.text_vectorizer import vectorize_text
 import joblib
 
 def train_sentiment_model(training_data, labels):
@@ -6,7 +7,7 @@ def train_sentiment_model(training_data, labels):
     Train a Naive Bayes sentiment model and save the vectorizer and model.
     """
     # Step 1: Preprocess the training data
-    vectorized_data, vectorizer = preprocess_text(training_data)
+    vectorized_data, featured_names, vectorizer = vectorize_text(training_data)
 
     # Step 2: Train the Naive Bayes classifier
     model = train_naive_bayes(vectorized_data, labels)

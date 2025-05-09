@@ -1,14 +1,14 @@
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import cross_val_score, train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import joblib
 
 def get_vectorizer():
     """
-    Returns a CountVectorizer instance.
+    Returns a TfidfVectorizer instance.
     """
-    return CountVectorizer()
+    return TfidfVectorizer(max_features=1000, stop_words="english")
 
 def train_naive_bayes(X, y):
     """
@@ -17,13 +17,6 @@ def train_naive_bayes(X, y):
     model = MultinomialNB()
     model.fit(X, y)
     return model
-
-def evaluate_model(model, X, y, cv=5):
-    """
-    Evaluates the model using cross-validation.
-    """
-    scores = cross_val_score(model, X, y, cv=cv, scoring="accuracy")
-    return scores
 
 # New helper functions
 

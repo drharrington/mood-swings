@@ -22,19 +22,9 @@ def vectorize_text(data, vectorizer=None):
         vectorized_data = vectorizer.fit_transform(data)
     else:
         vectorized_data = vectorizer.transform(data)
-
-    return vectorized_data, vectorizer
-    if vectorizer is None:
-        vectorizer = TfidfVectorizer(max_features=1000, stop_words="english")
-        vectorized_data = vectorizer.fit_transform(data)
-        feature_names = vectorizer.get_feature_names_out()
-    else:
-        vectorized_data = vectorizer.transform(data)
-        feature_names = vectorizer.get_feature_names_out()
-    
     normalized_data = normalize(vectorized_data)  # Normalize the data
-    return normalized_data, feature_names
-
+    return normalized_data, vectorizer.get_feature_names_out(), vectorizer
+    
 
 def check_class_imbalance(labels):
     """Check for class imbalance and log a warning."""
