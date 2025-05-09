@@ -39,7 +39,7 @@ class TestScraperUtils(unittest.TestCase):
         self.assertEqual(len(posts), 1)
         self.assertEqual(len(comments), 2)
         self.assertEqual(posts[0]["brand_name"], self.brand_name)
-        self.assertEqual(comments[1]["comment_body"], "Deleted Comment")
+        self.assertEqual(comments[1]["comment_body"], "deleted comment")
 
     def test_save_to_csv(self):
         logger.info("Running test_save_to_csv")

@@ -1,3 +1,9 @@
+.search-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .search-container {
   display: flex;
   justify-content: center;
@@ -24,6 +30,22 @@
   transition: background 0.3s;
 }
 
-.search-btn:hover {
+.search-btn:hover:not(:disabled) {
   background-color: #218838;
+}
+
+.search-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input {
+    max-width: none;
+  }
 }
