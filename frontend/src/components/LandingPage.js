@@ -3,23 +3,29 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import SearchBar from "./SearchBar";
 import "./LandingPage.css";
-
 const LandingPage = () => {
   const [showSearch, setShowSearch] = useState(false);
 
   return (
     <div className="landing-container">
-      {/* Typing animation for "Mood Swing" */}
-      <TypeAnimation
-        sequence={[
-          "Mood Swing", // Text to type out
-          2000, // Pause for 2 seconds
-        ]}
-        wrapper="h1"
-        cursor={true}
-        repeat={0} // Type once only
-        className="title"
-      />
+      {/* Logo and Typing animation for "Mood Swing" */}
+      <div className="title-row">
+        <img
+          src={process.env.PUBLIC_URL + '/mood_logo.png'}
+          alt="Mood Swings Logo"
+          className="mood-logo"
+        />
+        <TypeAnimation
+          sequence={[
+            "Mood Swing", // Text to type out
+            2000, // Pause for 2 seconds
+          ]}
+          wrapper="h1"
+          cursor={true}
+          repeat={0} // Type once only
+          className="title"
+        />
+      </div>
 
       {/* Description below title */}
       <motion.p
