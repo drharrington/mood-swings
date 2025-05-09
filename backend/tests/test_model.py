@@ -1,17 +1,17 @@
 from flask import Flask, request, jsonify
-import pickle
-from sklearn.feature_extraction.text import CountVectorizer
+import joblib
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Load the pretrained model and vectorizer
-with open("model.pkl", "rb") as model_file:
-    model = pickle.load(model_file)  # Load trained MultinomialNB model
+vectorizer_path = "vectorizer.pkl"
+model_path = "model.pkl"
 
-with open("vectorizer.pkl", "rb") as vectorizer_file:
-    vectorizer = pickle.load(vectorizer_file)  # Load CountVectorizer
+vectorizer = joblib.load(vectorizer_path)  # Load TfidfVectorizer
+model = joblib.load(model_path)  # Load trained MultinomialNB model
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -25,16 +25,19 @@ def predict():
         text = data['text']
         text_vectorized = vectorizer.transform([text])  # Vectorize input text
 
-        # Predict sentiment
-        prediction = model.predict(text_vectorized)[0]
-        sentiment = "positive" if prediction == 1 else "negative"
+        # Make prediction
+        prediction = model.predict(text_vectorized)[0]  # Get the predicted label
+        prediction_proba = model.predict_proba(text_vectorized).max()  # Get the confidence score
 
-        # Return JSON response
-        return jsonify({"text": text, "sentiment": sentiment}), 200
+        # Return the result
+        return jsonify({
+            "text": text,
+            "prediction": int(prediction),  # Convert to int for JSON serialization
+            "confidence": float(prediction_proba)  # Convert to float for JSON serialization
+        })
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
 
-# Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)

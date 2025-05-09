@@ -30,6 +30,7 @@ def fetch_brand_data(brand_name, limit=10, reddit_client=None):
     )
 
     data = []
+    print("here 1")
     try:
         # Search for posts mentioning the brand in the title or body
         for submission in reddit_client.subreddit("all").search(

@@ -2,7 +2,7 @@ import os
 import unittest
 import logging
 from unittest.mock import patch, MagicMock
-import backend.scraper.reddit_scraper as reddit_scraper
+from backend.scraper.reddit_scraper import reddit_scraper
 from backend.scraper.scraper_utils import process_data, save_to_csv
 
 # Configure logging for the tests

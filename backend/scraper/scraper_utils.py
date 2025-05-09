@@ -54,16 +54,17 @@ def process_data(data, brand_name):
     return posts, comments
 
 
-def save_to_csv(
-    posts, comments, posts_filename="posts.csv", comments_filename="comments.csv"
-):
+def save_to_csv(posts, comments, posts_filename="posts.csv", comments_filename="comments.csv"):
     """Save posts and comments to separate CSV files in the data directory."""
     try:
+        print("Posts data:", posts)
+        print("Comments data:", comments)
+        logging.info(f"Posts data: {posts}")
+        logging.info(f"Comments data: {comments}")
         data_dir = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
         )
         os.makedirs(data_dir, exist_ok=True)
-
         posts_file_path = os.path.join(data_dir, posts_filename)
         pd.DataFrame(posts).to_csv(posts_file_path, index=False, encoding="utf-8")
         logging.info(f"Raw posts data saved to {posts_file_path}")
