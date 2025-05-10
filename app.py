@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # Enable CORS
-CORS(app)
+CORS(app, origins=["http://localhost:3000", "https://mood-swings.onrender.com"])
 
 
 @app.route("/analyze", methods=["POST"])
@@ -39,7 +39,7 @@ def analyze():
 
 # Read environment variables for configuration
 port = int(os.environ.get("PORT", 5000))
-debug = os.environ.get("DEBUG", "True") == "True"
+debug = os.environ.get("DEBUG", "False") == "True"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=port, debug=debug)
