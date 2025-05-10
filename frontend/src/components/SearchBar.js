@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import SentimentResults from "./SentimentResults";
+import { fetchSentimentData } from "../services/api";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -14,13 +15,20 @@ const SearchBar = () => {
     setSentimentData(null);
 
     try {
-      // TODO: Replace with actual API call
-      // Simulating API call with mock data
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const mockData = [65, 20, 15]; // [positive, neutral, negative]
-      setSentimentData(mockData);
+      const result = await fetchSentimentData(query);
+      // result should have overall_sentiment, positive_count, neutral_count, negative_count
+      if (result && typeof result === 'object') {
+        setSentimentData([
+          result.positive_count || 0,
+          result.neutral_count || 0,
+          result.negative_count || 0
+        ]);
+      } else {
+        setSentimentData([0, 0, 0]);
+      }
     } catch (error) {
       console.error('Error fetching sentiment data:', error);
+      setSentimentData([0, 0, 0]);
     } finally {
       setIsLoading(false);
     }
