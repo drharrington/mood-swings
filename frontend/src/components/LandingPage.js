@@ -17,7 +17,7 @@ const LandingPage = () => {
         />
         <TypeAnimation
           sequence={[
-            "Mood Swing", // Text to type out
+            "Mood Swings", // Text to type out
             2000, // Pause for 2 seconds
           ]}
           wrapper="h1"
