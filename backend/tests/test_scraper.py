@@ -7,8 +7,9 @@ from backend.scraper.scraper_utils import process_data, save_to_csv
 
 # Configure logging for the tests
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
+
 logger = logging.getLogger(__name__)
 
 
@@ -83,7 +84,7 @@ class TestRedditScraper(unittest.TestCase):
 
         # Call the function being tested
         data = reddit_scraper.fetch_brand_data(
-            "TestBrand", limit=1, reddit_client=mock_reddit_instance
+            "TestBrand", max_posts=1, reddit_client=mock_reddit_instance
         )
 
         # Assertions to verify the mocked data is processed correctly
