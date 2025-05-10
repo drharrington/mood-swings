@@ -56,7 +56,7 @@ class TestTextVectorizer(unittest.TestCase):
             "Another test sentence with different unique words.",
             "More unique words to ensure enough features are generated.",
         ]
-        vectors, feature_names = vectorize_text(sample_data)
+        vectors, feature_names, vectorizer = vectorize_text(sample_data)
         self.assertEqual(vectors.shape[0], len(sample_data))
         self.assertGreater(len(feature_names), 0)
 
