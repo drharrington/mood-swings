@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from backend.text_vectorizing.text_vectorizer import process_and_vectorize
 import logging
+import numpy as np
 
 LABELED_DATASET_PATH = "backend/data/labeled_dataset.csv"
 VECTORIZED_DATA_PATH = "backend/data/vectorized_labeled.csv"
@@ -36,9 +37,13 @@ def train_model():
     y = df["category"]
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
+    
+    # Set equal class priors to treat each class equally
+    n_classes = len(np.unique(y_train))
+    class_prior = np.ones(n_classes) / n_classes
 
     logger.info("Training model...")
-    model = MultinomialNB()
+    model = MultinomialNB(alpha=0.1, class_prior=class_prior)
     model.fit(X_train, y_train)
 
     logger.info("Evaluating model...")

@@ -1,5 +1,6 @@
 import pandas as pd
 from backend.text_vectorizing.vectorizer_utils import vectorize_text, check_class_imbalance, load_vectorizer
+from backend.scraper.scraper_utils import clean_text
 import logging
 
 logging.basicConfig(
@@ -55,6 +56,9 @@ def process_and_vectorize(input_type="origin_reddit", input_path=None, is_traini
     except FileNotFoundError as e:
         logger.error("Error loading data: %s", e)
         return
+
+    # Clean the text data
+    texts = texts.apply(clean_text)
 
     # Filter out empty texts
     texts = texts[texts != ""]

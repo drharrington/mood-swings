@@ -31,15 +31,14 @@ def save_vectorizer(vectorizer):
 
 def vectorize_text(data, vectorizer=None, is_training=True):
     """Vectorize text data using TfidfVectorizer."""
-    if vectorizer is None:
-        if is_training:
-            vectorizer = TfidfVectorizer(max_features=1000, stop_words="english")
-            vectorized_data = vectorizer.fit_transform(data)
-            save_vectorizer(vectorizer)
-        else:
-            raise ValueError("Cannot vectorize without a trained vectorizer in inference mode.")
-    else:
+    if vectorizer is None and is_training:
+        vectorizer = TfidfVectorizer(max_features=1000, stop_words="english", ngram_range=(1, 2), max_df=0.8, min_df=5)
+        vectorized_data = vectorizer.fit_transform(data)
+        save_vectorizer(vectorizer)
+    elif vectorizer is not None:
         vectorized_data = vectorizer.transform(data)
+    else:
+        raise ValueError("Cannot vectorize without a trained vectorizer in inference mode.")
 
     normalized_data = normalize(vectorized_data)
     return normalized_data, vectorizer.get_feature_names_out(), vectorizer
