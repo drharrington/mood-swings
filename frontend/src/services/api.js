@@ -1,6 +1,6 @@
 export const fetchSentimentData = async (brandName) => {
   try {
-    const response = await fetch("http://localhost:5000/analyze", {
+    const response = await fetch("https://mood-swings-api.onrender.com/analyze", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
