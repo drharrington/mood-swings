@@ -1,16 +1,16 @@
 ![Mood Swings Logo](https://github.com/user-attachments/assets/49caf729-cf55-4e35-a6aa-e8656094d4ab)
 
-**Mood Swings** is an AI-powered sentiment analysis tool that helps you uncover how people truly feel about any brand — using real Reddit comments. Just enter a brand name, and instantly visualize public sentiment through beautiful charts and smart insights.
+**Mood Swings** is an AI-powered sentiment analysis tool that helps you uncover how people truly feel about any topic — using real Reddit comments. Just enter a person, place, thing, or idea, and instantly visualize public sentiment through beautiful charts and smart insights.
 
 ---
 
 ## 🌟 Features
 
 - 🔍 **Search Any Brand**  
-  Enter any brand name in the search bar to retrieve relevant Reddit comments.
+  Enter any keyword, phrase, or subject in the search bar to retrieve relevant Reddit comments.
 
 - 💬 **Reddit Comment Extraction**  
-  Automatically scrapes and filters real user comments related to the brand.
+  Automatically scrapes and filters real user comments related to your search query.
 
 - 🧠 **Sentiment Analysis**  
   Uses natural language processing to classify sentiment as positive or negative.
