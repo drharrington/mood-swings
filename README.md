@@ -1,4 +1,6 @@
-![Mood Swings Logo](https://github.com/user-attachments/assets/49caf729-cf55-4e35-a6aa-e8656094d4ab)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/49caf729-cf55-4e35-a6aa-e8656094d4ab" width="100" />
+</div>
 
 **Mood Swings** is an AI-powered sentiment analysis tool that helps you uncover how people truly feel about any topic — using real Reddit comments. Just enter a person, place, thing, or idea, and instantly visualize public sentiment through beautiful charts and smart insights.
 
