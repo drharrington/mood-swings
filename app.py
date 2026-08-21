@@ -30,11 +30,13 @@ def analyze():
 
         # Run the pipeline
         results = run_pipeline(brand_name)
+        if isinstance(results, dict) and "error" in results:
+            return jsonify({"error": "An internal error occurred."}), 500
         return jsonify(results)
 
     except Exception:
         logger.exception("Error in /analyze endpoint")
-        return jsonify({"error": "An internal error has occurred."}), 500
+        return jsonify({"error": "An internal error occurred."}), 500
 
 
 # Read environment variables for configuration
