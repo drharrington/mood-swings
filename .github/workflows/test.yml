@@ -1,5 +1,7 @@
 ---
   name: Run Backend Tests
+  permissions:
+    contents: read
   
   on:
     push:
