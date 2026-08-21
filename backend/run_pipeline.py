@@ -51,9 +51,9 @@ def run_pipeline(brand_name):
         }
         return results
 
-    except Exception as e:
-        logger.error(f"Error during analysis: {e}")
-        return {"error": str(e)}
+    except Exception:
+        logger.exception("Error during analysis")
+        return {"error": "Internal analysis error."}
 
 if __name__ == "__main__":
     brand_name = input("Enter the brand name for sentiment analysis: ")
